@@ -11,7 +11,7 @@ Parameters:
     Default: /global/subnets
   SslCertificateArn:
     Type: AWS::SSM::Parameter::Value<String>
-    Default: /kahgeh.com/SslCertificateArn
+    Default: /kahgeh.com/sslCertificateArn
 Resources:
   LoadBalancer:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer

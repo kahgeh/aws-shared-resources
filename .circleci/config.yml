@@ -1,0 +1,22 @@
+version: 2.1
+jobs:
+  update-alb:
+    docker:
+      - image: 651179183771.dkr.ecr.us-east-2.amazonaws.com/cicd/aws-base
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+    steps:
+      - checkout
+      - run:
+          name: Stack up
+          command: stackit up --stack-name alb --template ./alb.yml
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - update-alb:
+          context: 10kgDevTest
+          filters:
+            branches:
+              only: master
